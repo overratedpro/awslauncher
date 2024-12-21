@@ -12,4 +12,4 @@ RUN \
       --branch=v1.4.0 \
       'https://github.com/aws/rolesanywhere-credential-helper.git' \
       . \
-    && make -j $(nproc) release
+    && CGO_ENABLED=1 make -j $(nproc) release

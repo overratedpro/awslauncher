@@ -1,0 +1,29 @@
+name: push
+on: ["push"]
+jobs:
+  publish-docker:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: "${{ github.actor }}"
+          password: "${{ github.token }}"
+      - uses: docker/build-push-action@v4
+        with:
+          cache-from: "type=registry,ref=ghcr.io/${{ github.repository }}:latest"
+          cache-to: type=inline
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ github.ref_name == 'master' && 'latest' || 'testing' }}

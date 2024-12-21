@@ -23,4 +23,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ${{ github.ref_name == 'master' && 'latest' || 'testing' }}
+            ghcr.io/${{ github.repository }}:${{ github.ref_name == 'master' && 'latest' || 'testing' }}

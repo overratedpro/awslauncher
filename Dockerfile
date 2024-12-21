@@ -6,7 +6,7 @@ WORKDIR /opt/rolesanywhere-credential-helper
 
 
 RUN \
-    apk add --update --no-cache curl git make \
+    apk add --update --no-cache curl g++ git make \
     && git clone \
       --depth=1 \
       --branch=v1.4.0 \

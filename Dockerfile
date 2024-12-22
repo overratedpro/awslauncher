@@ -26,7 +26,7 @@ RUN \
     && cd /tmp \
     && unzip /tmp/awscliv2.zip \
     && ./aws/install --bin-dir /usr/local/bin --install-dir /opt/awscli \
-    rm -fr /tmp/aws /tmp/awscliv2.zip
+    && rm -fr /tmp/aws /tmp/awscliv2.zip
 
 
 FROM alpine:3.19

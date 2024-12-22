@@ -35,5 +35,6 @@ COPY --from=builder --chown=root:root --chmod=0755 /opt/rolesanywhere-credential
 
 COPY --from=builder --chown=root:root /opt/awscli /opt/awscli
 
-# FIXME: checking symlinks first, then copy only relevant ones
-COPY --from=builder --chown=root:root /usr/local/bin /usr/local/bin2
+RUN \
+    ln -s /opt/awscli/v2/current/bin/aws /usr/local/bin/aws \
+    && ln -s /opt/awscli/v2/current/bin/aws_completer /usr/local/bin/aws_completer
